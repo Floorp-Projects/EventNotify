@@ -1,4 +1,4 @@
-# Event notify
+# Event Notify
 
 GitHub Actions等のポート開放などが出来ないデバイスからのイベント通知を助けます。
 
