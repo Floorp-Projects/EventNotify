@@ -9,6 +9,7 @@
   "dependencies": {
     "@types/node": "^18.13.0",
     "@types/ws": "^8.5.4",
+    "discord-webhook-node": "^1.1.8",
     "ts-node": "^10.9.1",
     "tsc": "^2.0.4",
     "typescript": "^4.9.5",

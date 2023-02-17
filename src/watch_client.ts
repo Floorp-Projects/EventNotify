@@ -1,9 +1,11 @@
-import { exec } from "child_process";
 import WebSocket from "ws";
+import { Webhook } from "discord-webhook-node";
+import { exec } from "child_process";
 import utils from "./utils";
 import env from "./env";
 
 const ws = new WebSocket("ws://localhost:8082", { headers: { authorization: env.API_KEY } });
+const webhook = new Webhook(env.WEBHOOK_URL);
 utils.log.startup({device: env.DEVICE_NAME, type: "WATCH", addr: env.SERVER_ADDR});
 
 ws.on("open", () =>{
@@ -25,8 +27,15 @@ ws.on("open", () =>{
 
         if(response.type !== ConnectionType.Notice) return;
         utils.log.info("Excute command");
+        webhook.send(utils.webhook.success("Command excute", "command starting", response.device));
         exec(env.COMMAND, { encoding: "utf-8" }, (err, stdout, stderr) =>{
-            if(err) return utils.log.error(stderr);
+            if(err){
+                if(stderr === "") stderr = "*none*"
+                webhook.send(utils.webhook.error("Command execute error", `\`\`\`${stderr}\`\`\``, response.device));
+                return utils.log.error(stderr);
+            }
+            if(stdout === "") stdout = "*none*"
+            webhook.send(utils.webhook.success("Command excute success", `\`\`\`${stdout}\`\`\``, response.device));
             utils.log.info(stdout);
         });
     });
