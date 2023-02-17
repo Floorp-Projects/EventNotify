@@ -2,7 +2,7 @@ import WebSocket from "ws";
 import utils from "./utils";
 import env from "./env";
 
-const ws = new WebSocket("ws://localhost:8082", { headers: { authorization: env.API_KEY } });
+const ws = new WebSocket(env.SERVER_ADDR, { headers: { authorization: env.API_KEY } });
 utils.log.startup({device: env.DEVICE_NAME, type: "NOTICE", addr: env.SERVER_ADDR});
 
 ws.once("open", () =>{
