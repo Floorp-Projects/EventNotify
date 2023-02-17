@@ -4,7 +4,7 @@ export default {
     WEBHOOK_URL: process.env.WEBHOOK_URL || "",
 
     // CLIENT
-    SERVER_ADDR: process.env.SERVER_ADDR || "ws://192.168.0.100:10001",
+    SERVER_ADDR: process.env.SERVER_ADDR || "ws://localhost:8082",
     GROUP: process.env.GROUP || "production",
 
     // WATCHER
