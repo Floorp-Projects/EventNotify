@@ -29,13 +29,13 @@ const main = () =>{
             if(response.type !== ConnectionType.Notice) return;
             utils.log.info("Excute command");
             webhook.send(utils.webhook.wait("Command excute", "command starting", response.device));
-            exec(`${env.COMMAND} ${response.argv.filter((_v: string, i: number) => i > 1).join(" ")}`, { encoding: "utf-8" }, (err, stdout, stderr) =>{
+            exec(`${env.COMMAND} ${response.argv?response.argv.filter((_v: string, i: number) => i > 1).join(" "):""}`, { encoding: "utf-8" }, (err, stdout, stderr) =>{
                 if(err){
-                    if(stderr === "") stderr = "*none*"
+                    if(stderr === " ") stderr = "*none*"
                     webhook.send(utils.webhook.error("Command execute error", `\`\`\`${stderr}\`\`\``, response.device));
                     return utils.log.error(stderr);
                 }
-                if(stdout === "") stdout = "*none*"
+                if(stdout === " ") stdout = "*none*"
                 webhook.send(utils.webhook.success("Command excute success", `\`\`\`${stdout}\`\`\``, response.device));
                 utils.log.info(stdout);
             });
