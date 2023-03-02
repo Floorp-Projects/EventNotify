@@ -20,6 +20,13 @@ export default {
             .setAuthor(device)
             .setColor(parseInt("a8f79a", 16));
         },
+        wait: (title: string, description: string, device: string) =>{
+            return new MessageBuilder()
+            .setTitle(title)
+            .setDescription(description)
+            .setAuthor(device)
+            .setColor(parseInt("f7f49a", 16));
+        },
         error: (title: string, description: string, device: string) =>{
             return new MessageBuilder()
             .setTitle(title)

@@ -40,7 +40,7 @@ yarn install
 *実行すると即座に通知を送信します。
 
 ```bash
-yarn client:notice
+yarn client:notice [...argv]
 ```
 
 ### イベント受信側

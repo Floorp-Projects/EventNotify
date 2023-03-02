@@ -6,7 +6,7 @@ const ws = new WebSocket(env.SERVER_ADDR, { headers: { authorization: env.API_KE
 utils.log.startup({device: env.DEVICE_NAME, type: "NOTICE", addr: env.SERVER_ADDR});
 
 ws.once("open", () =>{
-    const connection: ConnectionHandshake = { type: ConnectionType.Notice, device: env.DEVICE_NAME, group: env.GROUP };
+    const connection: ConnectionHandshake = { type: ConnectionType.Notice, device: env.DEVICE_NAME, group: env.GROUP, argv: process.argv };
     ws.send(JSON.stringify(connection));
     utils.log.info("Connected");
 

@@ -6,5 +6,6 @@ const enum ConnectionType {
 interface ConnectionHandshake {
     type: ConnectionType,
     device: string,
-    group: string
+    group: string,
+    argv: Array<string>
 }

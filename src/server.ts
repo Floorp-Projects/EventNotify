@@ -21,7 +21,7 @@ wss.on("connection", (ws: WebSocket, request: IncomingMessage) => {
             webhook.send(utils.webhook.join("New watcher joined", `Device: ${message.device}\nGroup: ${message.group}`, "SERVER"))
         }
         wss.clients.forEach((client: WebSocket) =>{
-            const event: ConnectionHandshake = { type: message.type, device: message.device, group: message.group };
+            const event: ConnectionHandshake = { type: message.type, device: message.device, group: message.group, argv: message.argv };
             client.send(JSON.stringify(event));
         });
         utils.log.info(`Event deliver success (${message.group})\n`);
