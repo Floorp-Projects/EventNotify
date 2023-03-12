@@ -4,6 +4,7 @@
     "build": "tsc -p ./tsconfig.json",
     "server": "ts-node --files ./src/server.ts",
     "client:watch": "ts-node --files ./src/watch_client.ts",
+    "client:once": "ts-node --files ./src/watch_once.ts",
     "client:notice": "ts-node --files ./src/notice_client.ts"
   },
   "dependencies": {
